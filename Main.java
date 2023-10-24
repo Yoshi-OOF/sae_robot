@@ -14,8 +14,9 @@ public class Main {
 	public static void main(String[] args) {
 		suiviligne();
 		
-		Robot20232024.Tourner("B", 300, 30);
-		
+		Robot20232024.Tourner("C", 800, 270);
+		suiviligne();
+
 		Robot20232024.Arreter();
 		colorSensor.close();
 		sonar.close();
@@ -28,7 +29,6 @@ public class Main {
 		
 		float[] value = new float[1];	
 		float  xDistance=(float) 0.9;
-		float  x=(float) 0.2;
 
 		while (xDistance > 0.2) {
 			sonar.getDistanceMode().fetchSample(value, 0);
@@ -42,6 +42,7 @@ public class Main {
 				Robot20232024.AvancerMoteur(350,250);
 			}else if (colorName=="WHITE")  
 			{
+				Robot20232024.AvancerMoteur(0,0);
 				Robot20232024.Arreter();
 				break;
 			}else
