@@ -7,7 +7,6 @@ import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.sensor.SensorMode;
-import lejos.robotics.SampleProvider;
 import java.util.concurrent.TimeUnit;
 
 public class passageSecret {
@@ -15,14 +14,6 @@ public class passageSecret {
 	public static void main(String[] args) throws InterruptedException {
 		// TODO Auto-generated method stub
 		//passer du programme de déplacement à celui là juste avant l'entrée du passage
-		EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);	
-		SampleProvider light4= sensor4.getMode("Red");	
-		float sample4[] = new float[light4.sampleSize()];
-		
-		EV3TouchSensor touchSensor1 = new EV3TouchSensor(SensorPort.S1);
-		SensorMode touch1 = touchSensor1.getTouchMode();
-		float[] sample = new float[touch1.sampleSize()];	
-		
 		EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
 		float value[] = new float [1];
 		float distance;
@@ -35,45 +26,51 @@ public class passageSecret {
 		touche = Robot20232024.Attendre();
 		}while(touche!=8);
 		
-		 while (true) {
+		 while (distance > 0.2) {
 			sonar.getDistanceMode().fetchSample(value, 0);
 			distance = value[0];
-			if (distance < 0.2) {
-				break;
-			}
-			Robot20232024.AvancerMoteur(400,400);
+			Robot20232024.AvancerMoteur(300,300);
 		}
-		TimeUnit.SECONDS.sleep(3);
+		 
+		sonar.close();
 		
-		Robot20232024.Reculer1();
+		EV3TouchSensor touchSensor1 = new EV3TouchSensor(SensorPort.S1);
+		SensorMode touch1 = touchSensor1.getTouchMode();
+		float[] sample = new float[touch1.sampleSize()];	
+		
+		Robot20232024.Reculer();
 		do {
 			touch1.fetchSample(sample, 0);						
 		}while (sample[0] == 0);
 		touchSensor1.close();
 		
-		TimeUnit.SECONDS.sleep(3);
+		Robot20232024.FaireUnePause(10);
 		
-		for (i = 0; i < 1000;i++) {
-			Robot20232024.AvancerMoteur(700,700);
+		for (i = 0; i < 1500;i++) {
+			Robot20232024.AvancerMoteur(500,500);
 		}
 		
-		TimeUnit.SECONDS.sleep(1);
+		Robot20232024.FaireUnePause(10);
+		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
+		SensorMode color = colorSensor.getColorIDMode();
+		float[] sample1 = new float[color.sampleSize()];
+		String colorName = "NONE";	
 		
-		float x =(float) 0.2;
-		while (x > 0.06) {
-			light4.fetchSample(sample4, 0);
-			x= sample4[0];			
+		while (colorName != "BLACK") {
+			color.fetchSample(sample1, 0);
+			int colorId = (int)sample1[0];
+			colorName=Robot20232024.Namecolor(colorId);
 			Motor.C.rotate(1);
-			TimeUnit.SECONDS.sleep(1);
+			Robot20232024.FaireUnePause(10);
 			
 		}
-		TimeUnit.SECONDS.sleep(5);
+		Robot20232024.FaireUnePause(10);
 		for (i= 0; i <1000; i++) {
 			Robot20232024.AvancerMoteur(1000,1000);
 		}
 		
-		sensor4.close();
-		sonar.close();
+		colorSensor.close();
+		
 		
 	}
 
