@@ -7,7 +7,7 @@ import lejos.hardware.sensor.SensorMode;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.robotics.Color;
 
-public class suivi_ligne {
+public class suiviLigne {
 
     public static void main(String[] args) {
 		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
