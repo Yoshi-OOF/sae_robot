@@ -10,10 +10,10 @@ import lejos.robotics.Color;
 public class Main {
 
     public static void main(String[] args) {
-			EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
-			SensorMode color = colorSensor.getColorIDMode();
-			float[] sample = new float[color.sampleSize()];
-			String colorName;
+		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
+		SensorMode color = colorSensor.getColorIDMode();
+		float[] sample = new float[color.sampleSize()];
+		String colorName;
 			
     		EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
     		float[] value = new float[1];	
