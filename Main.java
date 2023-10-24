@@ -1,6 +1,7 @@
 package EV3;
 
 import lejos.hardware.lcd.LCD;
+import lejos.hardware.motor.Motor;
 import lejos.hardware.port.SensorPort;
 import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.SensorMode;
@@ -8,21 +9,17 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.robotics.Color;
 
 public class Main {
-	static EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
-	static EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
 	
 	public static void main(String[] args) {
 		suiviligne();
 		
-		Robot20232024.Tourner("C", 800, 270);
+		Robot20232024.Tourner("C", 900, 270);
 		suiviligne();
-
-		Robot20232024.Arreter();
-		colorSensor.close();
-		sonar.close();
 	}
 	
 	public static void suiviligne() {
+		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
+		EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
 		SensorMode color = colorSensor.getColorIDMode();
 		float[] sample = new float[color.sampleSize()];
 		String colorName;
@@ -42,8 +39,8 @@ public class Main {
 				Robot20232024.AvancerMoteur(350,250);
 			}else if (colorName=="WHITE")  
 			{
-				Robot20232024.AvancerMoteur(0,0);
-				Robot20232024.Arreter();
+				Motor.B.setSpeed(0);
+				Motor.C.setSpeed(0);
 				break;
 			}else
 			{
@@ -52,6 +49,9 @@ public class Main {
 			}
 			
 		}
+
+		colorSensor.close();
+		sonar.close();
 	}
 
 }
