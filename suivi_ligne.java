@@ -10,10 +10,10 @@ import lejos.robotics.Color;
 public class Main {
 
     public static void main(String[] args) {
-		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
-		SensorMode color = colorSensor.getColorIDMode();
-		float[] sample = new float[color.sampleSize()];
-		String colorName;
+			EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
+			SensorMode color = colorSensor.getColorIDMode();
+			float[] sample = new float[color.sampleSize()];
+			String colorName;
 			
     		EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
     		float[] value = new float[1];	
@@ -28,14 +28,17 @@ public class Main {
     			colorName=Robot20232024.Namecolor(colorId);
 
     			if (colorName == "BLACK") {
+	    			Robot20232024.AfficherUnmessageinst("debug color : " +colorName);
     				Robot20232024.AvancerMoteur(350,250);
-    			}else    			{
+    			}else if (colorName=="WHITE")    			{
+	    			break;
+    			}else
+    			{
+    				Robot20232024.AfficherUnmessageinst("debug color : " +colorName);
     				Robot20232024.AvancerMoteur(250,350);
     			}
     			
     		}
-    		
-    		
     		
     		sonar.close();
     		colorSensor.close();
