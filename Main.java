@@ -13,7 +13,9 @@ public class Main {
 	
 	public static void main(String[] args) {
 		suiviligne();
-		Robot20232024.FaireUneRotationAGauche(90);
+		
+		Robot20232024.Tourner("B", 300, 30);
+		
 		Robot20232024.Arreter();
 		colorSensor.close();
 		sonar.close();
