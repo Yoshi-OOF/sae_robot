@@ -47,6 +47,7 @@ public class Main {
 			Robot20232024.AfficherUnmessageinst(colorId);
 
 			colorName=Robot20232024.Namecolor(colorId);
+
 			if (colorName.equals("BLACK")) {
 				Robot20232024.AvancerMoteur(350,250);
 				
