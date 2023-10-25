@@ -10,19 +10,28 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.robotics.Color;
 import lejos.robotics.SampleProvider;
+import lejos.hardware.Audio; 
+import lejos.hardware.BrickFinder; 
+import lejos.hardware.Keys; 
+import lejos.hardware.ev3.EV3; 
+import lejos.hardware.lcd.TextLCD; 
 
 public class Main {
 
 	
 	public static void main(String[] args) {
 		suiviligne();
-		
-		Robot20232024.Tourner("C", 900, 270);
-
-		suiviligne();
 
 		int act=0;
 
+	    EV3 ev3 = (EV3) BrickFinder.getLocal();
+	    Audio audio = ev3.getAudio();
+	    audio.setVolume(100);
+	    audio.playTone(880, 500);
+	    audio.playTone(440, 500);
+	    audio.playTone(880, 500);
+	    audio.playTone(440, 500);
+		
 		while (act<3) {
 			Robot20232024.Tourner("A", 800, 120);
 			Motor.A.stop();
@@ -31,11 +40,14 @@ public class Main {
 			act++;
 		}
 
-		Robot20232024.Tourner("A", 800, -250);
-		Robot20232024.Tourner("B", 800, 360);
-
+		Robot20232024.Arreter();
+		Robot20232024.FaireUneRotationADroite(60);
+		
 		suiviligne();
-
+		// Programme labyrinthe
+		
+		
+		
 		Robot20232024.Arreter();
 
 	}
@@ -49,12 +61,11 @@ public class Main {
 		while (color < blanc) {
 			light4.fetchSample(sample, 0);
 			color = sample[0];	
-
-			if (color>0.06) {
-				Robot20232024.AvancerMoteur(250,350);
+			if (color<0.07) {
+				Robot20232024.AvancerMoteur(350,250);
 			}else
 			{
-				Robot20232024.AvancerMoteur(350,250);
+				Robot20232024.AvancerMoteur(250,350);
 			}
 			
 		}
