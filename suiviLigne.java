@@ -7,7 +7,6 @@
 		while (color < blanc) {
 			light4.fetchSample(sample, 0);
 			color = sample[0];	
-			Robot20232024.AfficherUnmessageinst(Double.toString(color));
 			if (color<0.07) {
 				Robot20232024.AvancerMoteur(350,250);
 			}else
