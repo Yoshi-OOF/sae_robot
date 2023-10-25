@@ -20,12 +20,6 @@ public class labyrinthe {
 		float distance;
 		distance = (float)0.9;
 		
-		int touche;
-		Robot20232024.AfficherUnmessageinst("Touche droite pour partir");
-		do{
-		touche = Robot20232024.Attendre();
-		}while(touche!=8);
-		
 		while (distance > 0.1) {
 			light4.fetchSample(sample, 0);
 			color = sample[0];	
