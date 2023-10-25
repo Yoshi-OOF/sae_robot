@@ -9,6 +9,7 @@ import lejos.hardware.sensor.SensorMode;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.motor.EV3MediumRegulatedMotor;
 import lejos.robotics.Color;
+import lejos.robotics.SampleProvider;
 
 public class Main {
 
@@ -24,9 +25,7 @@ public class Main {
 
 		while (act<5) {
 			Robot20232024.Tourner("A", 500, 60);
-			Robot20232024.Attendre(1000);
 			Robot20232024.Tourner("A", 500, 0);
-			Robot20232024.Attendre(1000);
 			act++;
 		}
 
@@ -36,13 +35,13 @@ public class Main {
 	}
 	
 	public static void suiviligne() {
-		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
-		SampleProvider light= colorSensor.getMode("Red");	
+		EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);	
+		SampleProvider light4= sensor4.getMode("Red");	
 		double blanc = 0.5, color=0;
-		float sample[] = new float[light.sampleSize()];
+		float sample[] = new float[light4.sampleSize()];
 
 		while (color < blanc) {
-			light.fetchSample(sample, 0);
+			light4.fetchSample(sample, 0);
 			color = sample[0];	
 
 			if (color>0.06) {
@@ -55,7 +54,7 @@ public class Main {
 		}
 		Motor.B.setSpeed(0);
 		Motor.C.setSpeed(0);
-		colorSensor.close();
+		sensor4.close();
 	}
 
 }
