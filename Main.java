@@ -23,14 +23,6 @@ public class Main {
 		suiviligne();
 
 		int act=0;
-
-	    EV3 ev3 = (EV3) BrickFinder.getLocal();
-	    Audio audio = ev3.getAudio();
-	    audio.setVolume(100);
-	    audio.playTone(880, 500);
-	    audio.playTone(440, 500);
-	    audio.playTone(880, 500);
-	    audio.playTone(440, 500);
 		
 		while (act<3) {
 			Robot20232024.Tourner("A", 800, 120);
@@ -42,11 +34,10 @@ public class Main {
 
 		Robot20232024.Arreter();
 		Robot20232024.FaireUneRotationADroite(60);
+		Robot20232024.Arreter();
 		
-		suiviligne();
 		// Programme labyrinthe
-		
-		
+		labyrinthe.main(args);
 		
 		Robot20232024.Arreter();
 
