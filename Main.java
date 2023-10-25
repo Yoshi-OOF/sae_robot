@@ -23,15 +23,19 @@ public class Main {
 
 		int act=0;
 
-		while (act<5) {
-			Robot20232024.Tourner("A", 800, 60);
+		while (act<3) {
+			Robot20232024.Tourner("A", 800, 120);
 			Motor.A.stop();
 			Robot20232024.FaireUnePause(1000);
-			Robot20232024.Tourner("A", 800, -60);
+			Robot20232024.Tourner("A", 800, -120);
 			act++;
 		}
 
-		
+		Robot20232024.Tourner("A", 800, -250);
+		Robot20232024.Tourner("B", 800, 360);
+
+		suiviligne();
+
 		Robot20232024.Arreter();
 
 	}
