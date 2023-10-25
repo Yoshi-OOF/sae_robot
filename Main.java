@@ -24,8 +24,10 @@ public class Main {
 		int act=0;
 
 		while (act<5) {
-			Robot20232024.Tourner("A", 500, 60);
-			Robot20232024.Tourner("A", 500, 0);
+			Robot20232024.Tourner("A", 800, 60);
+			Motor.A.stop();
+			Robot20232024.FaireUnePause(1000);
+			Robot20232024.Tourner("A", 800, -60);
 			act++;
 		}
 
@@ -45,15 +47,15 @@ public class Main {
 			color = sample[0];	
 
 			if (color>0.06) {
-				Robot20232024.AvancerMoteur(350,250);
+				Robot20232024.AvancerMoteur(250,350);
 			}else
 			{
-				Robot20232024.AvancerMoteur(250,350);
+				Robot20232024.AvancerMoteur(350,250);
 			}
 			
 		}
-		Motor.B.setSpeed(0);
-		Motor.C.setSpeed(0);
+		Motor.B.stop();
+		Motor.C.stop();
 		sensor4.close();
 	}
 
