@@ -36,33 +36,24 @@ public class Main {
 	
 	public static void suiviligne() {
 		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
-		
-		SensorMode color = colorSensor.getColorIDMode();
-		float[] sample = new float[color.sampleSize()];
-		String colorName;
+		SampleProvider light= colorSensor.getMode("Red");	
+		double blanc = 0.5, color=0;
+		float sample[] = new float[light.sampleSize()];
 
-		while (true) {
-			color.fetchSample(sample, 0);
-			int colorId = (int)sample[0];
-			Robot20232024.AfficherUnmessageinst(colorId);
+		while (color < blanc) {
+			light.fetchSample(sample, 0);
+			color = sample[0];	
 
-			colorName=Robot20232024.Namecolor(colorId);
-
-			if (colorName.equals("BLACK")) {
+			if (color>0.06) {
 				Robot20232024.AvancerMoteur(350,250);
-				
-			}else if (colorName.equals("WHITE"))
-			{
-				Motor.B.setSpeed(0);
-				Motor.C.setSpeed(0);
-				break;
 			}else
 			{
 				Robot20232024.AvancerMoteur(250,350);
 			}
 			
 		}
-		
+		Motor.B.setSpeed(0);
+		Motor.C.setSpeed(0);
 		colorSensor.close();
 	}
 
