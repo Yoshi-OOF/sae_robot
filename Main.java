@@ -21,6 +21,7 @@ public class Main {
 		suiviligne();
 
 		int act=0;
+
 		while (act<5) {
 			Robot20232024.Tourner("A", 500, 60);
 			Robot20232024.Attendre(1000);
