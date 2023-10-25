@@ -33,8 +33,8 @@ public class labyrinthe {
 			distance = value[0];
 
 			if (color < 0.12) {
-				Motor.B.setSpeed(100);
-				Motor.C.setSpeed(400);   //detecte noir : va beaucoup à gauche
+				Motor.B.setSpeed(200);
+				Motor.C.setSpeed(300);   //detecte noir : va beaucoup à gauche
 				Motor.B.backward();
 				Motor.C.forward();
 			}
@@ -45,7 +45,7 @@ public class labyrinthe {
 				Motor.C.forward();
 			}
 			else{
-				Robot20232024.AvancerMoteur(300,200);   //sinon : va presque tout droit (un peu à droite)
+				Robot20232024.AvancerMoteur(350,150);   //sinon : va presque tout droit (un peu à droite)
 			}
 			
 		}
