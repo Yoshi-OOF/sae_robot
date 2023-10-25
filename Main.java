@@ -19,12 +19,17 @@ public class Main {
 		Robot20232024.Tourner("C", 900, 270);
 
 		suiviligne();
-		// avancer reculer moteur A
-		while (true) {
-			Robot20232024.AvancerMoteur(250, 250);
-			Robot20232024.ReculerMoteur(250, 250);
+
+		int act=0;
+		while (act<5) {
+			Robot20232024.Tourner("A", 500, 60);
+			Robot20232024.Attendre(1000);
+			Robot20232024.Tourner("A", 500, 0);
+			Robot20232024.Attendre(1000);
+			act++;
 		}
 
+		
 		Robot20232024.Arreter();
 
 	}
