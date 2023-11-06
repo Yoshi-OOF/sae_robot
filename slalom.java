@@ -25,72 +25,59 @@ public class slalom {
 		
 		float value[] = new float [1];
 		float distance;
-		distance = 0;
+		distance = 9;
 		
 		
 		
-		while (distance > 0.15) {      
+		while (distance > 0.17) {      
 			sonar.getDistanceMode().fetchSample(value, 0);
 			distance = value[0];
 			Robot20232024.AvancerMoteur(300,300);
-			
-			if (distance <= 0.15) {
-				Robot20232024.Tourner("B", 110, 180);
-				
 				
 		}
-	}
+		Robot20232024.Tourner("C", 110, 160);
 		
-		sonar.getDistanceMode().fetchSample(value, 0); 
-		distance = value[0];
+		Motor.C.stop(); 
+		distance = 9;
 	
-			while (distance > 0.15) {  
-					sonar.getDistanceMode().fetchSample(value, 0);
-					distance = value[0];
-					Robot20232024.AvancerMoteur(300,300);
-					
-					if (distance <= 0.15) {
-						
-						
-						Robot20232024.Tourner("C", 110, 180);
-					}
-				} 
-			
-			
-			
-			
-			
-			sonar.getDistanceMode().fetchSample(value, 0);
-			distance = value[0];
-			
-			while (distance > 0.15) {  
+		while (distance > 0.17) {  
 				sonar.getDistanceMode().fetchSample(value, 0);
 				distance = value[0];
 				Robot20232024.AvancerMoteur(300,300);
-				
-				if (distance <= 0.15) {
-					
-					
-					Robot20232024.Tourner("C", 110, 180);
-				}
+
 			} 
-			
+		
+		Robot20232024.Tourner("B", 110, 160);
+		
+		
+		
+		
+		Motor.B.stop(); 
+		distance = 9;
+		
+		while (distance > 0.17) {  
 			sonar.getDistanceMode().fetchSample(value, 0);
 			distance = value[0];
+			Robot20232024.AvancerMoteur(300,300);
+
+		} 
+		
+		Robot20232024.Tourner("B", 110, 160);
+		
+		Motor.B.stop(); 
+		distance = 9;
+		
+		while (distance > 0.17) {  
+			sonar.getDistanceMode().fetchSample(value, 0);
+			distance = value[0];
+			Robot20232024.AvancerMoteur(300,300);
+		} 
+		
+		Robot20232024.Tourner("C", 110, 160);
+		Motor.C.stop(); 
+		
 			
-			while (distance > 0.15) {  
-				sonar.getDistanceMode().fetchSample(value, 0);
-				distance = value[0];
-				Robot20232024.AvancerMoteur(300,300);
-				
-				if (distance <= 0.15) {
-					
-					
-					Robot20232024.Tourner("B", 110, 180);
-				}
-			} 
-				
-				
+			
 
 		sonar.close();
 		Robot20232024.Arreter();
