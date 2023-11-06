@@ -26,30 +26,30 @@ public class slalom {
 		float value[] = new float [1];
 		float distance;
 		distance = 9;
-		int i = 0;
 		
 		
-		while (distance > 0.2) {      //Première étape (tourne à droite)
+		
+		while (distance > 0.15) {      
 			sonar.getDistanceMode().fetchSample(value, 0);
 			distance = value[0];
 			Robot20232024.AvancerMoteur(300,300);
 			
-			if (distance < 0.2) {
+			if (distance <= 0.15) {
 				Robot20232024.Tourner("C", 110, 180);
 				
 				
 		}
 	}
 		
-		sonar.getDistanceMode().fetchSample(value, 0); //Réinitialise les capteurs à 0
+		sonar.getDistanceMode().fetchSample(value, 0); 
 		distance = value[0];
 	
-			while (distance > 0.2) {  //Seconde étape (tourne à gauche)
+			while (distance > 0.15) {  
 					sonar.getDistanceMode().fetchSample(value, 0);
 					distance = value[0];
 					Robot20232024.AvancerMoteur(300,300);
 					
-					if (distance < 0.2) {
+					if (distance <= 0.15) {
 						
 						
 						Robot20232024.Tourner("B", 110, 180);
@@ -63,12 +63,27 @@ public class slalom {
 			sonar.getDistanceMode().fetchSample(value, 0);
 			distance = value[0];
 			
-			while (distance > 0.2) {  //Troisième étape (tourne à droite)
+			while (distance > 0.15) {  
 				sonar.getDistanceMode().fetchSample(value, 0);
 				distance = value[0];
 				Robot20232024.AvancerMoteur(300,300);
 				
-				if (distance < 0.2) {
+				if (distance <= 0.15) {
+					
+					
+					Robot20232024.Tourner("B", 110, 180);
+				}
+			} 
+			
+			sonar.getDistanceMode().fetchSample(value, 0);
+			distance = value[0];
+			
+			while (distance > 0.15) {  
+				sonar.getDistanceMode().fetchSample(value, 0);
+				distance = value[0];
+				Robot20232024.AvancerMoteur(300,300);
+				
+				if (distance <= 0.15) {
 					
 					
 					Robot20232024.Tourner("C", 110, 180);
