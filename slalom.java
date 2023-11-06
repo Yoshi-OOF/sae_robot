@@ -25,7 +25,7 @@ public class slalom {
 		
 		float value[] = new float [1];
 		float distance;
-		distance = 9;
+		distance = 0;
 		
 		
 		
@@ -35,7 +35,7 @@ public class slalom {
 			Robot20232024.AvancerMoteur(300,300);
 			
 			if (distance <= 0.15) {
-				Robot20232024.Tourner("C", 110, 180);
+				Robot20232024.Tourner("B", 110, 180);
 				
 				
 		}
@@ -52,7 +52,7 @@ public class slalom {
 					if (distance <= 0.15) {
 						
 						
-						Robot20232024.Tourner("B", 110, 180);
+						Robot20232024.Tourner("C", 110, 180);
 					}
 				} 
 			
@@ -71,7 +71,7 @@ public class slalom {
 				if (distance <= 0.15) {
 					
 					
-					Robot20232024.Tourner("B", 110, 180);
+					Robot20232024.Tourner("C", 110, 180);
 				}
 			} 
 			
@@ -86,7 +86,7 @@ public class slalom {
 				if (distance <= 0.15) {
 					
 					
-					Robot20232024.Tourner("C", 110, 180);
+					Robot20232024.Tourner("B", 110, 180);
 				}
 			} 
 				
