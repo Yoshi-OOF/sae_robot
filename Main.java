@@ -138,6 +138,7 @@ public class Main {
         Robot20232024.Tourner("C", 110, 140);
 
         Motor.C.stop();
+        Robot20232024.FaireUnePause(2000);
         distance = 9;
 
         while (distance > 0.17) {
@@ -150,6 +151,7 @@ public class Main {
         Robot20232024.Tourner("B", 110, 140);
 
         Motor.B.stop();
+        Robot20232024.FaireUnePause(2000);
         distance = 9;
 
         while (distance > 0.17) {
@@ -162,6 +164,7 @@ public class Main {
         Robot20232024.Tourner("B", 110, 140);
 
         Motor.B.stop();
+        Robot20232024.FaireUnePause(2000);
         distance = 9;
 
         while (distance > 0.17) {
@@ -171,6 +174,7 @@ public class Main {
         }
 
         Robot20232024.Tourner("C", 110, 140);
+        Robot20232024.FaireUnePause(2000);
         Motor.C.stop();
 
         sonar.close();
@@ -195,7 +199,7 @@ public class Main {
         Motor.C.stop();
         sonar.close();
 
-        Robot20232024.FaireUnePause(3000);
+        Robot20232024.FaireUnePause(2000);
 
         EV3TouchSensor touchSensor1 = new EV3TouchSensor(SensorPort.S1);
         SensorMode touch1 = touchSensor1.getTouchMode();
