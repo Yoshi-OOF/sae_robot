@@ -56,7 +56,7 @@ public class Main {
 
 		// Programme princesse
 		fin();
-		Robot20232024.Arreter();
+		Robot20232024.Arreter1();
 
 	}
 
@@ -211,18 +211,26 @@ public class Main {
 				Motor.B.stop();
 				Motor.C.stop();
 				Robot20232024.FaireUnePause(2000);
-				
-				for (i = 0; i < 1000;i++) {
-					Robot20232024.AvancerMoteur(500,500);
+
+				EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);	
+				SampleProvider light4= sensor4.getMode("Red");	
+				double blanc = 0.5, color=0;
+				float sample1[] = new float[light4.sampleSize()];
+
+				while (color < blanc) {
+					light4.fetchSample(sample1, 0);
+					color = sample1[0];	
+					Robot20232024.AvancerMoteur(350,350);
 				}
-				
+
 				Motor.B.stop();
 				Motor.C.stop();
-				Robot20232024.FaireUnePause(2000);
-				
-				Robot20232024.FaireUneRotationADroite(50);
-				
-				Robot20232024.Arreter();
+				sensor4.close();
+
+				Robot20232024.FaireUneRotationADroite(90);
+				Robot20232024.AvancerAvecVitesse(1000);
+				Motor.B.stop();
+				Motor.C.stop();
 	}
 	
 	public static void fin() {
@@ -256,9 +264,10 @@ public class Main {
 		  } else if (colorId != 7) {
 		    Robot20232024.AfficherUnmessage("Pas bonne couleur !");
 		  }
-
-		  Robot20232024.Arreter();
-		  Robot20232024.AfficherUnmessage("Parcours terminé !");
+		  
+			Robot20232024.Arreter();
+			Robot20232024.AfficherUnmessage("Fin parcours");
+			Robot20232024.FaireUnBip();
 	}
 
 }
