@@ -191,11 +191,11 @@ public class Main {
 					distance = value[0];
 					Robot20232024.AvancerMoteur(300,300);
 				}
-				 
-				sonar.close();
-				
 				Motor.B.stop();
 				Motor.C.stop();
+				sonar.close();
+				
+
 				Robot20232024.FaireUnePause(3000);
 				
 				EV3TouchSensor touchSensor1 = new EV3TouchSensor(SensorPort.S1);
@@ -206,10 +206,10 @@ public class Main {
 				do {
 					touch1.fetchSample(sample, 0);						
 				}while (sample[0] == 0);
-				touchSensor1.close();
-				
 				Motor.B.stop();
 				Motor.C.stop();
+				touchSensor1.close();
+
 				Robot20232024.FaireUnePause(2000);
 
 				EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);	
