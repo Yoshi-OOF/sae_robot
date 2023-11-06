@@ -145,7 +145,7 @@ public class Main {
 					Robot20232024.AvancerMoteur(300,300);
 						
 				}
-				Robot20232024.Tourner("C", 110, 160);
+				Robot20232024.Tourner("C", 110, 140);
 				
 				Motor.C.stop(); 
 				distance = 9;
@@ -157,7 +157,7 @@ public class Main {
 
 					} 
 				
-				Robot20232024.Tourner("B", 110, 160);
+				Robot20232024.Tourner("B", 110, 140);
 				
 				
 				
@@ -172,7 +172,7 @@ public class Main {
 
 				} 
 				
-				Robot20232024.Tourner("B", 110, 160);
+				Robot20232024.Tourner("B", 110, 140);
 				
 				Motor.B.stop(); 
 				distance = 9;
@@ -183,7 +183,7 @@ public class Main {
 					Robot20232024.AvancerMoteur(300,300);
 				} 
 				
-				Robot20232024.Tourner("C", 110, 160);
+				Robot20232024.Tourner("C", 110, 140);
 				Motor.C.stop(); 
 				
 					
