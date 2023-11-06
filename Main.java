@@ -43,16 +43,18 @@ public class Main {
 
 		// Programme labyrinthe
 		labyrinthe();
+		Robot20232024.Arreter();
 		
 		// Programme slalom
 		slalom();
+		Robot20232024.Arreter();
 		
 		// Programme passage secret
 		passagesecret();
+		Robot20232024.Arreter();
 		
 		// Programme princesse
 		fin();
-		
 		Robot20232024.Arreter();
 
 	}
