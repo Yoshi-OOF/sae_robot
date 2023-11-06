@@ -123,58 +123,74 @@ public class Main {
 	}
 	
 	public static void slalom() {
-	    // TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 
-	    EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
+		
+				EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
+				
+				
+				
 
-	    Robot20232024.AvancerMoteur(20, 20);
+				Robot20232024.AvancerMoteur(20, 20);
+				
+				float value[] = new float [1];
+				float distance;
+				distance = 9;
+				
+				
+				
+				while (distance > 0.17) {      
+					sonar.getDistanceMode().fetchSample(value, 0);
+					distance = value[0];
+					Robot20232024.AvancerMoteur(300,300);
+						
+				}
+				Robot20232024.Tourner("C", 110, 160);
+				
+				Motor.C.stop(); 
+				distance = 9;
+			
+				while (distance > 0.17) {  
+						sonar.getDistanceMode().fetchSample(value, 0);
+						distance = value[0];
+						Robot20232024.AvancerMoteur(300,300);
 
-	    float value[] = new float[1];
-	    float distance;
-	    distance = 9;
-	    int i = 0;
+					} 
+				
+				Robot20232024.Tourner("B", 110, 160);
+				
+				
+				
+				
+				Motor.B.stop(); 
+				distance = 9;
+				
+				while (distance > 0.17) {  
+					sonar.getDistanceMode().fetchSample(value, 0);
+					distance = value[0];
+					Robot20232024.AvancerMoteur(300,300);
 
-	    while (distance > 0.2) { //Première étape (tourne à droite)
-	      sonar.getDistanceMode().fetchSample(value, 0);
-	      distance = value[0];
-	      Robot20232024.AvancerMoteur(300, 300);
+				} 
+				
+				Robot20232024.Tourner("B", 110, 160);
+				
+				Motor.B.stop(); 
+				distance = 9;
+				
+				while (distance > 0.17) {  
+					sonar.getDistanceMode().fetchSample(value, 0);
+					distance = value[0];
+					Robot20232024.AvancerMoteur(300,300);
+				} 
+				
+				Robot20232024.Tourner("C", 110, 160);
+				Motor.C.stop(); 
+				
+					
+					
 
-	      if (distance < 0.2) {
-	        Robot20232024.Tourner("C", 110, 180);
-
-	      }
-	    }
-
-	    sonar.getDistanceMode().fetchSample(value, 0); //Réinitialise les capteurs à 0
-	    distance = value[0];
-
-	    while (distance > 0.2) { //Seconde étape (tourne à gauche)
-	      sonar.getDistanceMode().fetchSample(value, 0);
-	      distance = value[0];
-	      Robot20232024.AvancerMoteur(300, 300);
-
-	      if (distance < 0.2) {
-
-	        Robot20232024.Tourner("B", 110, 180);
-	      }
-	    }
-
-	    sonar.getDistanceMode().fetchSample(value, 0);
-	    distance = value[0];
-
-	    while (distance > 0.2) { //Troisième étape (tourne à droite)
-	      sonar.getDistanceMode().fetchSample(value, 0);
-	      distance = value[0];
-	      Robot20232024.AvancerMoteur(300, 300);
-
-	      if (distance < 0.2) {
-
-	        Robot20232024.Tourner("C", 110, 180);
-	      }
-	    }
-
-	    sonar.close();
-	    Robot20232024.Arreter();
+				sonar.close();
+				Robot20232024.Arreter();
 	}
 	
 	public static void passagesecret() {
