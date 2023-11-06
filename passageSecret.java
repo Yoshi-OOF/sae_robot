@@ -7,7 +7,6 @@ import lejos.hardware.sensor.EV3ColorSensor;
 import lejos.hardware.sensor.EV3TouchSensor;
 import lejos.hardware.sensor.EV3UltrasonicSensor;
 import lejos.hardware.sensor.SensorMode;
-import java.util.concurrent.TimeUnit;
 
 public class passageSecret {
 
@@ -21,18 +20,22 @@ public class passageSecret {
 		int i = 0;
 		
 		int touche;
-		Robot20232024.AfficherUnmessage("Touche droite pour partir");
+		Robot20232024.AfficherUnmessageinst("Touche droite pour partir");
 		do{
 		touche = Robot20232024.Attendre();
 		}while(touche!=8);
 		
-		 while (distance > 0.2) {
+		while (distance > 0.2) {
 			sonar.getDistanceMode().fetchSample(value, 0);
 			distance = value[0];
 			Robot20232024.AvancerMoteur(300,300);
 		}
 		 
 		sonar.close();
+		
+		Motor.B.stop();
+		Motor.C.stop();
+		Robot20232024.FaireUnePause(3000);
 		
 		EV3TouchSensor touchSensor1 = new EV3TouchSensor(SensorPort.S1);
 		SensorMode touch1 = touchSensor1.getTouchMode();
@@ -44,34 +47,26 @@ public class passageSecret {
 		}while (sample[0] == 0);
 		touchSensor1.close();
 		
-		Robot20232024.FaireUnePause(10);
+		Motor.B.stop();
+		Motor.C.stop();
+		Robot20232024.FaireUnePause(2000);
 		
-		for (i = 0; i < 1500;i++) {
+		for (i = 0; i < 10000;i++) {
 			Robot20232024.AvancerMoteur(500,500);
 		}
 		
-		Robot20232024.FaireUnePause(10);
-		EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
-		SensorMode color = colorSensor.getColorIDMode();
-		float[] sample1 = new float[color.sampleSize()];
-		String colorName = "NONE";	
+		Motor.B.stop();
+		Motor.C.stop();
+		Robot20232024.FaireUnePause(2000);
 		
-		while (colorName != "BLACK") {
-			color.fetchSample(sample1, 0);
-			int colorId = (int)sample1[0];
-			colorName=Robot20232024.Namecolor(colorId);
-			Motor.C.rotate(1);
-			Robot20232024.FaireUnePause(10);
-			
-		}
-		Robot20232024.FaireUnePause(10);
-		for (i= 0; i <1000; i++) {
+		Robot20232024.FaireUneRotationADroite(50);
+		
+		i = 0;
+		Robot20232024.FaireUnePause(2000);
+		
+		for (i= 0; i <10000; i++) {
 			Robot20232024.AvancerMoteur(1000,1000);
 		}
 		
-		colorSensor.close();
-		
-		
 	}
-
 }
