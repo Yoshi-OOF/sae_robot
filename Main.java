@@ -52,7 +52,8 @@ public class Main {
 		// Programme passage secret
 		passagesecret();
 		Robot20232024.Arreter();
-		
+		suiviligne();
+
 		// Programme princesse
 		fin();
 		Robot20232024.Arreter();
@@ -184,14 +185,8 @@ public class Main {
 		float distance;
 		distance = 9;
 		int i = 0;
-		
-		int touche;
-		Robot20232024.AfficherUnmessage("Touche droite pour partir");
-		do{
-		touche = Robot20232024.Attendre();
-		}while(touche!=8);
-		
-		 while (distance > 0.2) {
+	
+		while (distance > 0.2) {
 			sonar.getDistanceMode().fetchSample(value, 0);
 			distance = value[0];
 			Robot20232024.AvancerMoteur(300,300);
