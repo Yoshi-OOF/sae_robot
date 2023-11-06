@@ -18,12 +18,6 @@ public class passageSecret {
 				distance = 9;
 				int i = 0;
 				
-				int touche;
-				Robot20232024.AfficherUnmessageinst("Touche droite pour partir");
-				do{
-				touche = Robot20232024.Attendre();
-				}while(touche!=8);
-				
 				while (distance > 0.2) {
 					sonar.getDistanceMode().fetchSample(value, 0);
 					distance = value[0];
