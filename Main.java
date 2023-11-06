@@ -93,7 +93,7 @@ public class Main {
 		float distance;
 		distance = (float)0.9;
 		
-		while (distance > 0.3) {
+		while (distance > 0.2) {
 			light4.fetchSample(sample, 0);
 			color = sample[0];	
 			sonar.getDistanceMode().fetchSample(value, 0);
