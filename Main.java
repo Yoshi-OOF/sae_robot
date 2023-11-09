@@ -19,18 +19,18 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  public class Main {
 
      public static void main(String[] args) {
-         int touche;
- 		 Robot20232024.AfficherUnmessageinst("Touche droite pour partir");
+         int touche; //Déclarer la variable 'touche'
+ 		 Robot20232024.AfficherUnmessageinst("Touche droite pour partir"); //afficher un message
  		 do{
- 		 touche = Robot20232024.Attendre();
+ 		 touche = Robot20232024.Attendre(); //attendre l'appui sur le bouton
  		 }while(touche!=8);
-         suiviligne();
+         suiviligne(); //Utilisation de la procédure suiviligne()
 
          // Soulever de poids
-         int act = 0;
+         int act = 0; //déclarer la variable act à 0
 
-         while (act < 3) {
-             Robot20232024.Tourner("A", 300, 120);
+         while (act < 3) { //boucle qui fait lever et baisser le bras 3 fois 
+             Robot20232024.Tourner("A", 300, 120); 
              Motor.A.stop();
              Robot20232024.FaireUnePause(1000);
              Robot20232024.Tourner("A", 300, -120);
@@ -64,12 +64,12 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
      }
 
      public static void suiviligne() {
-         EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);
+         EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3); //Déclarer le sensor sur le port 3
          SampleProvider light4 = sensor4.getMode("Red");
-         double blanc = 0.5, color = 0;
+         double blanc = 0.5, color = 0; //initiliser les variables blanc et color
          float sample[] = new float[light4.sampleSize()];
 
-         while (color < blanc) {
+         while (color < blanc) { //T
              light4.fetchSample(sample, 0);
              color = sample[0];
              if (color < 0.1) {
