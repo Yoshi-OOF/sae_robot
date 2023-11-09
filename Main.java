@@ -19,6 +19,12 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  public class Main {
 
      public static void main(String[] args) {
+         int touche;
+       		Robot20232024.AfficherUnmessageinst("Touche droite pour partir");
+       		do{
+       		touche = Robot20232024.Attendre();
+       		}while(touche!=8);
+      
          suiviligne();
 
          // Soulever de poids
