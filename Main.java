@@ -19,17 +19,19 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
  public class Main {
 
      public static void main(String[] args) {
-         int touche; //Déclarer la variable 'touche'
- 		 Robot20232024.AfficherUnmessageinst("Touche droite pour partir"); //afficher un message
- 		 do{
- 		 touche = Robot20232024.Attendre(); //attendre l'appui sur le bouton
- 		 }while(touche!=8);
-         suiviligne(); //Utilisation de la procédure suiviligne()
+      
+         int touche; 
+ 		      Robot20232024.AfficherUnmessageinst("Touche droite pour partir");  //boucle qui attend l'appuis de la touche droitte pour lancer le programme
+ 		      do{
+      		 touche = Robot20232024.Attendre(); 
+ 	     	 }while(touche!=8);
+      
+         suiviligne();                                                      //Utilisation de la procédure suiviligne()
 
          // Soulever de poids
-         int act = 0; //déclarer la variable act à 0
+         int act = 0; 
 
-         while (act < 3) { //boucle qui fait lever et baisser le bras 3 fois 
+         while (act < 3) {                                                  //boucle qui fait lever et baisser le bras 3 fois 
              Robot20232024.Tourner("A", 300, 120); 
              Motor.A.stop();
              Robot20232024.FaireUnePause(1000);
@@ -64,12 +66,12 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
      }
 
      public static void suiviligne() {
-         EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3); //Déclarer le sensor sur le port 3
+         EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);                   //préparation du capteur couleur
          SampleProvider light4 = sensor4.getMode("Red");
-         double blanc = 0.5, color = 0; //initiliser les variables blanc et color
+         double blanc = 0.5, color = 0; 
          float sample[] = new float[light4.sampleSize()];
 
-         while (color < blanc) { //T
+         while (color < blanc) {                                                       //Tant que du blanc n'est pas rencontré, le robot suit la ligne noir
              light4.fetchSample(sample, 0);
              color = sample[0];
              if (color < 0.1) {
@@ -85,12 +87,12 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
      }
 
      public static void labyrinthe() {
-         EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);
+         EV3ColorSensor sensor4 = new EV3ColorSensor(SensorPort.S3);                   //préparation du capteur couleur
          SampleProvider light4 = sensor4.getMode("Red");
          double blanc = 0.4, color = 0;
          float sample[] = new float[light4.sampleSize()];
 
-         EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
+         EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);           //préparation du capteur distance
          float value[] = new float[1];
          float distance;
          distance = (float) 0.9;
@@ -103,16 +105,16 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
              if (color < 0.12) {
                  Motor.B.setSpeed(200);
-                 Motor.C.setSpeed(300); //detecte noir : va beaucoup à gauche
+                 Motor.C.setSpeed(300);                                                 //si detecte noir : va beaucoup à gauche
                  Motor.B.backward();
                  Motor.C.forward();
              } else if (color > blanc) {
                  Motor.B.setSpeed(400);
-                 Motor.C.setSpeed(100); //detecte blanc : va beaucoup à droite presque sur place
+                 Motor.C.setSpeed(100);                                                 //si detecte blanc : va beaucoup à droite presque sur place
                  Motor.B.forward();
                  Motor.C.forward();
              } else {
-                 Robot20232024.AvancerMoteur(350, 150); //sinon : va presque tout droit (un peu à droite)
+                 Robot20232024.AvancerMoteur(350, 150);                                 //sinon : va presque tout droit (un peu à droite)
              }
 
          }
@@ -123,7 +125,6 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
      }
 
      public static void slalom() {
-         // TODO Auto-generated method stub
 
          EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
 
@@ -133,7 +134,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          float distance;
          distance = 9;
 
-         while (distance > 0.19) {
+         while (distance > 0.19) {                                                       //avance jusqu'à croiser un mur
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
@@ -144,7 +145,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          Motor.C.stop();
          distance = 9;
 
-         while (distance > 0.19) {
+         while (distance > 0.19) {                                                        //avance jusqu'à croiser un mur
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
@@ -156,7 +157,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          Motor.B.stop();
          distance = 9;
 
-         while (distance > 0.19) {
+         while (distance > 0.19) {                                                          //avance jusqu'à croiser un mur
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
@@ -168,7 +169,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          Motor.B.stop();
          distance = 9;
 
-         while (distance > 0.19) {
+         while (distance > 0.19) {                                                           //avance jusqu'à croiser un mur
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
@@ -183,14 +184,14 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
      public static void passagesecret() {
          // TODO Auto-generated method stub
-         //passer du programme de déplacement à celui là juste avant l'entrée du passage
+       
          EV3UltrasonicSensor sonar = new EV3UltrasonicSensor(SensorPort.S4);
          float value[] = new float[1];
          float distance;
          distance = 9;
          int i = 0;
 
-         while (distance > 0.2) {
+         while (distance > 0.2) {                                                             //avance jusqu'à croiser un mur
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
