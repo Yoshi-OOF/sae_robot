@@ -39,7 +39,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
          // Direction etape suivante
          Robot20232024.Arreter();
-         Robot20232024.FaireUneRotationADroite(50);
+         Robot20232024.FaireUneRotationADroite(80);
          Robot20232024.Tourner("A", 500, 200);
          Motor.A.stop();
          Motor.B.stop();
@@ -59,10 +59,8 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          Robot20232024.Arreter();
          suiviligne();
 
-         // Programme princesse
+         // Programme de fin
          fin();
-         Robot20232024.Arreter1();
-
      }
 
      public static void suiviligne() {
@@ -74,10 +72,10 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          while (color < blanc) {
              light4.fetchSample(sample, 0);
              color = sample[0];
-             if (color < 0.07) {
-                 Robot20232024.AvancerMoteur(350, 250);
+             if (color < 0.1) {
+                 Robot20232024.AvancerMoteur(400, 250);
              } else {
-                 Robot20232024.AvancerMoteur(250, 350);
+                 Robot20232024.AvancerMoteur(250, 400);
              }
 
          }
@@ -141,7 +139,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
              Robot20232024.AvancerMoteur(300, 300);
 
          }
-         Robot20232024.Tourner("C", 110, 180);
+         Robot20232024.Tourner("C", 110, 200);
 
          Motor.C.stop();
          distance = 9;
@@ -153,7 +151,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
          }
 
-         Robot20232024.Tourner("B", 110, 180);
+         Robot20232024.Tourner("B", 110, 150);
 
          Motor.B.stop();
          distance = 9;
@@ -165,7 +163,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
          }
 
-         Robot20232024.Tourner("B", 110, 180);
+         Robot20232024.Tourner("B", 110, 150);
 
          Motor.B.stop();
          distance = 9;
@@ -176,7 +174,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
              Robot20232024.AvancerMoteur(300, 300);
          }
 
-         Robot20232024.Tourner("C", 110, 180);
+         Robot20232024.Tourner("C", 110, 190);
          Motor.C.stop();
 
          sonar.close();
@@ -239,39 +237,8 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
      }
 
      public static void fin() {
-         // objectif : idetifier les noms des couleurs et leur Id
-         EV3ColorSensor colorSensor = new EV3ColorSensor(SensorPort.S3);
-         //EV3MediumRegulatedMotor armMotor = new EV3MediumRegulatedMotor(MotorPort.A);
-
-         SensorMode color = colorSensor.getColorIDMode();
-         float[] sample = new float[color.sampleSize()];
-         color.fetchSample(sample, 0);
-         int colorId = (int) sample[0];
-         String colorName;
-         colorName = Robot20232024.Namecolor(colorId);
-         Robot20232024.AfficherUnmessage(colorId + " - " + colorName);
-         colorSensor.close();
-
-         if (colorId == 7) {
-             Robot20232024.AfficherUnmessage("Couleur noir");
-             for (int i = 1; i < 4; i++) {
-                 Robot20232024.AvancerMoteur(500, 500);
-
-                 Robot20232024.Arreter();
-
-             }
-             for (int j = 0; j < 3; j++) {
-                 Robot20232024.Tourner("A", 50, 60);
-                 Robot20232024.Tourner("A", 50, -60);
-             }
-             Robot20232024.JouerMusique(1);
-
-         } else if (colorId != 7) {
-             Robot20232024.AfficherUnmessage("Pas bonne couleur !");
-         }
-
          Robot20232024.Arreter();
-         Robot20232024.AfficherUnmessage("Fin parcours");
+         Robot20232024.AfficherUnmessageinst("Fin de l'évasion");
          Robot20232024.FaireUnBip();
      }
 
