@@ -40,7 +40,7 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          // Direction etape suivante
          Robot20232024.Arreter();
          Robot20232024.FaireUneRotationADroite(50);
-         Robot20232024.Tourner("A", 800, 200);
+         Robot20232024.Tourner("A", 500, 200);
          Motor.A.stop();
          Motor.B.stop();
          Motor.C.stop();
