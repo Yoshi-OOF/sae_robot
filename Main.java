@@ -20,21 +20,20 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
 
      public static void main(String[] args) {
          int touche;
-       		Robot20232024.AfficherUnmessageinst("Touche droite pour partir");
-       		do{
-       		touche = Robot20232024.Attendre();
-       		}while(touche!=8);
-      
+ 		 Robot20232024.AfficherUnmessageinst("Touche droite pour partir");
+ 		 do{
+ 		 touche = Robot20232024.Attendre();
+ 		 }while(touche!=8);
          suiviligne();
 
          // Soulever de poids
          int act = 0;
 
          while (act < 3) {
-             Robot20232024.Tourner("A", 800, 120);
+             Robot20232024.Tourner("A", 300, 120);
              Motor.A.stop();
              Robot20232024.FaireUnePause(1000);
-             Robot20232024.Tourner("A", 800, -120);
+             Robot20232024.Tourner("A", 300, -120);
              act++;
          }
 
@@ -42,7 +41,9 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          Robot20232024.Arreter();
          Robot20232024.FaireUneRotationADroite(50);
          Robot20232024.Tourner("A", 800, 200);
-         Robot20232024.Arreter();
+         Motor.A.stop();
+         Motor.B.stop();
+         Motor.C.stop();
          suiviligne();
 
          // Programme labyrinthe
@@ -134,48 +135,48 @@ import lejos.hardware.sensor.EV3UltrasonicSensor;
          float distance;
          distance = 9;
 
-         while (distance > 0.17) {
+         while (distance > 0.19) {
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
 
          }
-         Robot20232024.Tourner("C", 110, 140);
+         Robot20232024.Tourner("C", 110, 180);
 
          Motor.C.stop();
          distance = 9;
 
-         while (distance > 0.17) {
+         while (distance > 0.19) {
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
 
          }
 
-         Robot20232024.Tourner("B", 110, 140);
+         Robot20232024.Tourner("B", 110, 180);
 
          Motor.B.stop();
          distance = 9;
 
-         while (distance > 0.17) {
+         while (distance > 0.19) {
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
 
          }
 
-         Robot20232024.Tourner("B", 110, 140);
+         Robot20232024.Tourner("B", 110, 180);
 
          Motor.B.stop();
          distance = 9;
 
-         while (distance > 0.17) {
+         while (distance > 0.19) {
              sonar.getDistanceMode().fetchSample(value, 0);
              distance = value[0];
              Robot20232024.AvancerMoteur(300, 300);
          }
 
-         Robot20232024.Tourner("C", 110, 140);
+         Robot20232024.Tourner("C", 110, 180);
          Motor.C.stop();
 
          sonar.close();
